@@ -1,0 +1,12 @@
+# Dependencias para detección de objetos con OpenCV
+# Instalar con: pip install -r requirements.txt
+
+# Procesamiento de imágenes y visión por computadora
+opencv-python==4.12.0.88
+
+# Manejo de arreglos numéricos
+numpy==2.2.6
+
+# Visualización de imágenes y gráficos
+matplotlib==3.10.7
+

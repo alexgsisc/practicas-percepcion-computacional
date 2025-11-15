@@ -1,0 +1,75 @@
+# Entorno virtual de Python
+venv/
+env/
+ENV/
+.venv/
+
+# Archivos Python compilados
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Archivos generados por el código
+# Ground truth y imágenes procesadas
+**/groundtruth_*.png
+**/*_resaltada_*.png
+**/*_contornos.png
+
+# Archivos de distribución / empaquetado
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Archivos del sistema operativo
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+
+# IDEs y editores
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Archivos de entorno
+.env
+.env.local
+.env.*.local
+
+# Archivos de prueba temporales (opcional - descomenta si quieres ignorarlos)
+# test*.py
+# testfinish.py
+
