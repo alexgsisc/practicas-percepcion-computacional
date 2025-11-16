@@ -9,6 +9,7 @@ Sistema de visión por computadora para la detección, segmentación y clasifica
 - [Requisitos](#-requisitos)
 - [Instalación](#-instalación)
 - [Uso](#-uso)
+- [Resultados](#-resultados)
 - [Estructura del Proyecto](#-estructura-del-proyecto)
 - [Tecnologías Utilizadas](#-tecnologías-utilizadas)
 
@@ -109,6 +110,32 @@ Este script:
 - Clasifica cada manzana como "chica" o "grande"
 - Muestra los resultados con etiquetas
 
+## 📊 Resultados
+
+A continuación se muestran los resultados obtenidos por cada uno de los scripts implementados:
+
+### Detección de Jitomates Rojos
+
+Los siguientes resultados muestran la detección exitosa de jitomates rojos, incluyendo el manejo de oclusiones y fragmentaciones:
+
+![Resultado 1 - Detección de Jitomates](results/jitomates_resultado1.png)
+
+![Resultado 2 - Detección de Jitomates](results/jitomates_resultado2.png)
+
+![Resultado 3 - Detección de Jitomates](results/jitomates_resultado3.png)
+
+### Detección de Manzanas Amarillas
+
+Resultado de la segmentación de manzanas amarillas utilizando detección por color en espacio HSV:
+
+![Resultado - Detección de Manzanas Amarillas](results/manzanas_amarillar_resultado1.png)
+
+### Clasificación de Manzanas por Tamaño
+
+Resultado de la clasificación automática de manzanas según su tamaño (chica/grande):
+
+![Resultado - Clasificación por Tamaño](results/identificar_size_resultado1.png)
+
 ## 📁 Estructura del Proyecto
 
 ```
@@ -127,6 +154,13 @@ practicas/
 │   ├── manzana_amarilla.jpg
 │   ├── manzana_chica_grande.JPG
 │   └── ...
+│
+├── results/                         # Resultados de los scripts
+│   ├── jitomates_resultado1.png
+│   ├── jitomates_resultado2.png
+│   ├── jitomates_resultado3.png
+│   ├── manzanas_amarillar_resultado1.png
+│   └── identificar_size_resultado1.png
 │
 ├── requirements.txt                 # Dependencias del proyecto
 ├── README.md                        # Este archivo

@@ -1,15 +1,14 @@
 import cv2
 import numpy as np
 import math
+import matplotlib.pyplot as plt
 
 # ================================
 # 1. Cargar imagen
 # ================================
-img = cv2.imread("jitomates/jitomates3.jpg")
+img = cv2.imread("jitomates/jitomates1.jpg")
 if img is None:
     raise Exception("No se pudo cargar la imagen.")
-
-cv2.imshow("1 - Imagen Original", img)
 
 # ================================
 # 2. Convertir a HSV
@@ -49,8 +48,6 @@ mask_close = cv2.morphologyEx(mask_rojo, cv2.MORPH_CLOSE, kernel_close)
 # Eliminar ruido pequeño (kernel más pequeño para no eliminar partes importantes)
 kernel_open = np.ones((max(3, kernel_size // 2), max(3, kernel_size // 2)), np.uint8)
 mask_final = cv2.morphologyEx(mask_close, cv2.MORPH_OPEN, kernel_open)
-
-cv2.imshow("2 - Máscara Final", mask_final)
 
 # ================================
 # 5. Detectar contornos
@@ -139,7 +136,18 @@ for i in range(len(detections)):
     merged_detections.append(merged_box)
 
 # ================================
-# 7. Dibujar resultados finales
+# 7. Dibujar contornos detectados
+# ================================
+img_contornos = img.copy()
+
+# Dibujar todos los contornos detectados (antes de unirlos)
+for cnt in contours:
+    area = cv2.contourArea(cnt)
+    if area >= min_area:  # Solo dibujar contornos que pasaron el filtro
+        cv2.drawContours(img_contornos, [cnt], -1, (255, 0, 0), 3)  # Dibuja contorno en color azul (BGR)
+
+# ================================
+# 8. Dibujar resultados finales
 # ================================
 output = img.copy()
 count = 0
@@ -150,7 +158,36 @@ for x, y, w, h in merged_detections:
     cv2.putText(output, f"Tomate {count}", (int(x), int(y-10)),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
 
-cv2.imshow(f"3 - Jitomates Detectados {count}", output)
+# ================================
+# 9. Mostrar imágenes con Matplotlib
+# ================================
 
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+# OpenCV usa BGR, Matplotlib usa RGB → por lo que se procede a convertir
+img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+img_contornos_rgb = cv2.cvtColor(img_contornos, cv2.COLOR_BGR2RGB)
+output_rgb = cv2.cvtColor(output, cv2.COLOR_BGR2RGB)
+
+plt.figure(figsize=(20, 8))
+
+plt.subplot(1, 4, 1)
+plt.imshow(img_rgb)
+plt.title("Imagen Original")
+plt.axis("off")
+
+plt.subplot(1, 4, 2)
+plt.imshow(mask_final, cmap="gray")
+plt.title("Máscara Final")
+plt.axis("off")
+
+plt.subplot(1, 4, 3)
+plt.imshow(img_contornos_rgb)
+plt.title("Contornos Detectados")
+plt.axis("off")
+
+plt.subplot(1, 4, 4)
+plt.imshow(output_rgb)
+plt.title(f"Jitomates Detectados ({count})")
+plt.axis("off")
+
+plt.tight_layout()
+plt.show()

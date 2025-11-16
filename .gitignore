@@ -70,6 +70,6 @@ $RECYCLE.BIN/
 .env.*.local
 
 # Archivos de prueba temporales (opcional - descomenta si quieres ignorarlos)
-# test*.py
-# testfinish.py
+test*.py
+testfinish.py
 
