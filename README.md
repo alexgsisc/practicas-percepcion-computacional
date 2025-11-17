@@ -21,6 +21,7 @@ La segmentación de imágenes es una técnica fundamental en visión por computa
 
 - **Detección de Jitomates Rojos**: Identifica y cuenta jitomates rojos maduros en imágenes, manejando oclusiones y fragmentaciones causadas por ramas.
 - **Detección de Manzanas Amarillas**: Segmenta manzanas amarillas utilizando detección por color en espacio HSV.
+- **Segmentación Multiclase de Manzanas**: Detecta simultáneamente manzanas rojas, amarillas, verdes y podridas a partir de una sola imagen con generación automática de ground truths.
 - **Clasificación por Tamaño**: Clasifica manzanas en "chica" o "grande" según el área de sus contornos.
 
 ## ✨ Características
@@ -110,6 +111,18 @@ Este script:
 - Clasifica cada manzana como "chica" o "grande"
 - Muestra los resultados con etiquetas
 
+### Segmentación Multiclase de Manzanas
+
+```bash
+python codigo_manzanas_rojas_amarillas_verdes_podridas.py
+```
+
+Este script:
+- Descarga y carga automáticamente una imagen de referencia desde Google Drive
+- Segmenta manzanas rojas, amarillas, verdes y podridas en el espacio HSV
+- Genera y guarda las máscaras (ground truth) por categoría en `manzanas_result/`
+- Visualiza las máscaras y las segmentaciones en una cuadrícula 4×2
+
 ## 📊 Resultados
 
 A continuación se muestran los resultados obtenidos por cada uno de los scripts implementados:
@@ -136,6 +149,12 @@ Resultado de la clasificación automática de manzanas según su tamaño (chica/
 
 ![Resultado - Clasificación por Tamaño](results/identificar_size_resultado1.png)
 
+### Segmentación Multiclase de Manzanas
+
+Ground truths y segmentaciones obtenidas para manzanas rojas, amarillas, verdes y podridas en una sola figura:
+
+![Resultado - Segmentación Multiclase](results/manzanas_rojas_amarillas_podridas_result.png)
+
 ## 📁 Estructura del Proyecto
 
 ```
@@ -144,6 +163,8 @@ practicas/
 ├── codigo_jitomates.py              # Detección de jitomates rojos
 ├── codigo_manzanas_amarillas.py     # Detección de manzanas amarillas
 ├── identificador_size.py            # Clasificación de manzanas por tamaño
+├── codigo_manzanas_rojas_amarillas_verdes_podridas.py
+│                                     # Segmentación multiclase de manzanas
 │
 ├── jitomates/                       # Imágenes de jitomates
 │   ├── jitomates1.jpg
@@ -154,13 +175,18 @@ practicas/
 │   ├── manzana_amarilla.jpg
 │   ├── manzana_chica_grande.JPG
 │   └── ...
-│
+├── manzanas_result/                 # codigo_manzanas_rojas_amarillas_verdes_podridas.py
+│   ├── ground_truth_amarillas.png
+│   ├── ground_truth_podridas.png
+│   └── ...
+|
 ├── results/                         # Resultados de los scripts
 │   ├── jitomates_resultado1.png
 │   ├── jitomates_resultado2.png
 │   ├── jitomates_resultado3.png
 │   ├── manzanas_amarillar_resultado1.png
-│   └── identificar_size_resultado1.png
+│   ├── identificar_size_resultado1.png
+│   └── manzanas_rojas_amarillas_podridas_result.png
 │
 ├── requirements.txt                 # Dependencias del proyecto
 ├── README.md                        # Este archivo
